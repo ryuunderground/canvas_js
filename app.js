@@ -4,21 +4,21 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// 벽
-// fill: 다 채움
-// stroke: 테두리만
-ctx.fillRect(250, 300, 25, 200);
-ctx.fillRect(550, 300, 25, 200);
+// 팔
+ctx.fillRect(270, 300, 25, 120)
+ctx.fillRect(455, 300, 25, 120)
 
-// 문
-// 선 굵기 변경 먼저
-ctx.lineWidth = 3;
-ctx.strokeRect(400, 420, 30, 75);
+// 몸통
+ctx.fillRect(300, 300, 150, 200)
 
-// 지붕
-ctx.fillRect(250, 300, 300, 20)
-ctx.moveTo(200, 320);
-ctx.lineTo(412.5, 195);
-ctx.lineTo(625, 320);
-ctx.lineTo(200, 320);
+// 머리
+ctx.arc(375, 250, 50, -4/3*Math.PI, 1/3*Math.PI);
+ctx.fill()
+
+// 눈
+
+ctx.beginPath();
+ctx.fillStyle = "ivory";
+ctx.arc(355, 240, 5, Math.PI, 2*Math.PI);
+ctx.arc(395, 240, 5, Math.PI, 2*Math.PI);
 ctx.fill();
