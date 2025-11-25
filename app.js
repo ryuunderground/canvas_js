@@ -25,7 +25,8 @@ function onMove(e) {
     if (isPainting)
     {
         ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
+        //ctx.stroke();
+        ctx.fill();
         return;
     }
     ctx.moveTo(e.offsetX, e.offsetY);
