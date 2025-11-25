@@ -4,21 +4,40 @@ const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
 
-// 팔
-ctx.fillRect(270, 300, 25, 120)
-ctx.fillRect(455, 300, 25, 120)
+ctx.lineWidth = 2;
 
-// 몸통
-ctx.fillRect(300, 300, 150, 200)
+const colors = [
+    "#ff3838",
+    "#ffb8b8",
+    "#c56cf0",
+    "#ff9f1a",
+    "#fff200",
+    "#fff200",
+    "#32ff7e",
+    "#7efff5",
+    "#18dcff",
+    "#7d5fff",
+];
 
-// 머리
-ctx.arc(375, 250, 50, -4/3*Math.PI, 1/3*Math.PI);
-ctx.fill()
+let x_coord = 0;
+let y_coord = 0;
 
-// 눈
+function onClick(e) {
+    x_coord = e.offsetX
+    y_coord = e.offsetY
+    ctx.moveTo(x_coord, y_coord)
+}
 
-ctx.beginPath();
-ctx.fillStyle = "ivory";
-ctx.arc(355, 240, 5, Math.PI, 2*Math.PI);
-ctx.arc(395, 240, 5, Math.PI, 2*Math.PI);
-ctx.fill();
+function onMouse(e) {
+    ctx.beginPath();
+    ctx.moveTo(x_coord, y_coord);
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    ctx.strokeStyle = color;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+}
+
+
+
+canvas.addEventListener("mousemove", onMouse)
+canvas.addEventListener("click", onClick)
