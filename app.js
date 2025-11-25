@@ -19,25 +19,26 @@ const colors = [
     "#7d5fff",
 ];
 
-let x_coord = 0;
-let y_coord = 0;
+let isPainting = false
 
-function onClick(e) {
-    x_coord = e.offsetX
-    y_coord = e.offsetY
-    ctx.moveTo(x_coord, y_coord)
+function onMove(e) {
+    if (isPainting)
+    {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        return;
+    }
+    ctx.moveTo(e.offsetX, e.offsetY);
 }
 
-function onMouse(e) {
-    ctx.beginPath();
-    ctx.moveTo(x_coord, y_coord);
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    ctx.strokeStyle = color;
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.stroke();
+function onMouseDown(e) {
+    isPainting = true;
+}
+function canclePainting(e) {
+    isPainting = false;
 }
 
-
-
-canvas.addEventListener("mousemove", onMouse)
-canvas.addEventListener("click", onClick)
+canvas.addEventListener("mousemove", onMove)
+canvas.addEventListener("mousedown", onMouseDown)
+canvas.addEventListener("mouseup", canclePainting)
+canvas.addEventListener("mouseleave", canclePainting)
